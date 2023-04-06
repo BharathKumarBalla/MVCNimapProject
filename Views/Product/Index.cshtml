@@ -1,0 +1,66 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVCNimapProject.Models.ProductsWithCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-family:'Times New Roman', Times, serif ;text-align:center"  >Product Details</h2>
+
+<p style=" text-align:center ;font-family:'Baskerville Old Face' ;font-size:larger ">
+    @Html.ActionLink("Add New Category", "Create")
+</p>
+<table  style="font-family:'Times New Roman', Times, serif" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CategoryName)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                <button class="alert-success" >
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+                </button> |
+                <button class="alert-info">
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId })
+                </button> |
+            <button class="alert-danger">
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </button> 
+            </td>
+        </tr>
+    }
+
+</table>
+<div style="text-align:center" class="pagedList">
+    @Html.PagedListPager(Model, i => Url.Action("Index", "Product", new { i, Search = Request.QueryString["Search"] }))
+</div>
+
+
+

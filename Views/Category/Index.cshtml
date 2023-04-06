@@ -1,0 +1,52 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVCNimapProject.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; 
+text-align:center">Category List</h2>
+
+<p style="text-align:end ; font-family:'Javanese Text'" >
+    <button class="btn btn-group>
+        @Html.ActionLink("Add New Category", "Create")
+    </button>
+</p>
+<div class="col-md-2"></div>
+<div class="col-md4"></div>
+<div class="col-md-4"></div>
+<div class="col-md-2"></div>
+<table style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CategoryName)
+        </th>
+        <th style="text-align:left"> Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                <button class="alert-success">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId })
+                </button>|
+                <button class="alert-info">
+                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId })
+                </button> |
+                <button class="alert-danger">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+<div style="text-align:center" class="pagedList">
+    @Html.PagedListPager(Model, i => Url.Action("Index", "Category", new { i, Search = Request.QueryString["Search"] }))
+</div>

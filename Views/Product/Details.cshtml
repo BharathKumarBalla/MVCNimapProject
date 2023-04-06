@@ -1,0 +1,47 @@
+﻿@model MVCNimapProject.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="font-family:'Baskerville Old Face' ;text-align:center">Product Details</h2>
+
+<div style="font-family:Georgia, 'Times New Roman', Times, serif" class="bg-info">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName) :
+            </dt>
+
+            @foreach (var item in ViewBag.Categories)
+            {
+                if (item.CategoryId == Model.CategoryName)
+                {
+                    <dd>
+                        @item.CategoryName
+                    </dd>
+                }
+            }
+
+        </dl>
+    </div>
+   
+</div>
+<p style="text-align:center">
+    <button class="btn btn-group">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
+    </button>
+    <button class="btn btn-group">
+        @Html.ActionLink("Back to List", "Index")
+        </button>
+</p>

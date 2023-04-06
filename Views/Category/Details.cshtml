@@ -1,0 +1,33 @@
+﻿@model MVCNimapProject.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="text-align:center">Category Details</h2>
+
+<div style="font-family:Georgia, 'Times New Roman', Times, serif " class="bg-info" >
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p style="text-align:center">
+    <button class="btn btn-group">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId })
+    </button> 
+
+    <button class="btn btn-group">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</p>
